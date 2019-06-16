@@ -1,0 +1,36 @@
+html {
+  height: 100%;
+}
+
+body {
+  background: url(../images/WorldMap.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+
+.maincontent {
+  height: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  padding: 12px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  box-shadow: 0 4px 8px 0 rgba(26, 27, 27, 0.432),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: linear-gradient(
+    to right,
+    rgba(235, 229, 210, 0.7),
+    rgba(235, 234, 229, 0.6),
+    rgba(235, 229, 210, 0.7)
+  );
+
+  /* opacity: .25; */
+}
+.contentdiv {
+  padding: 16px;
+  font-size: 16px;
+}
