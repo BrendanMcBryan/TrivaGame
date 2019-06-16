@@ -52,42 +52,173 @@ triviaQuestions = [
       "https://commons.wikimedia.org/wiki/File:Clouds_over_the_Atlantic_Ocean.jpg#/media/File:Clouds_over_the_Atlantic_Ocean.jpg"
   }
 ];
+var clockRunning = false;
+var intervalId;
+var time = 0;
+var qAsked = 0;
+var qNum = -1;
+var gameScore = 0;
+var timeperq = 5;
 
 // test to make sure i can access all info from array of objects Above.
-for (var i = 0; i < triviaQuestions.length; i++) {
-  console.log(triviaQuestions[i].questiontype);
-  console.log(triviaQuestions[i].question);
-  for (var j = 0; j < triviaQuestions[i].answers.length; j++) {
-    console.log(triviaQuestions[i].answers[j]);
-  }
-  num = triviaQuestions[i].correctanswerindex;
-  console.log("correct answere is: " + triviaQuestions[i].answers[num]);
-  console.log(triviaQuestions[i].correctText);
 
-  console.log(triviaQuestions[i].qimageurl);
-}
+// for (var i = 0; i < triviaQuestions.length; i++) {
+//   console.log(triviaQuestions[i].questiontype);
+//   console.log(triviaQuestions[i].question);
+//   for (var j = 0; j < triviaQuestions[i].answers.length; j++) {
+//     console.log(triviaQuestions[i].answers[j]);
+//   }
+//   num = triviaQuestions[i].correctanswerindex;
+//   console.log("correct answere is: " + triviaQuestions[i].answers[num]);
+//   console.log(triviaQuestions[i].correctText);
+
+//   console.log(triviaQuestions[i].qimageurl);
+// }
+
 //Functions to run App
-function startGame() {}
+function startClock() {
+  console.log("you got to Start Clock");
+  if (!clockRunning) {
+    intervalId = setInterval(count, 1000);
+    clockRunning = true;
+  }
 
-function newQuestion() {}
+}
+function stopClock() {
+  clearInterval(intervalId);
+  timeperq = 5;
+  time = 0;
+  clockRunning = false;
+}
 
-function correctAnswer() {}
+function count() {
+  time++;
+  var converted = timeConverter(time);
+  // console.log(converted);
+  $("#timerDiv").text(converted);
+  if (converted === 0) {
+    timesUp();
+  }
+}
 
-function incorrectAnswer() {}
+//Funciton adjusted from Stopwatch game
+function timeConverter(t) {
+  var minutes = Math.floor(t / 60);
+  var seconds = t - minutes * 60;
 
-function timesUp (){}
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
 
-function endGame(){}
+  if (minutes === 0) {
+    minutes = "00";
+  } else if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
 
-function updateProgress (){}
+  return timeperq - seconds;
+}
+
+function startGame() {
+  console.log("you got to Start Game");
+  $("#gameCard").css("display", "block");
+  $("#timerSection").css("display", "block");
+  $("#metabuttons").css("display", "none");
+
+  newQuestion();
+}
+
+function newQuestion() {
+  startClock();
+  qAsked++;
+  qNum++;
+  theQuestion = triviaQuestions[qNum];
+
+  var guessDiv = document.getElementById("gameGuessChoices");
+  guessDiv.innerHTML = "";
+  qText = theQuestion.question;
+  qAns = theQuestion.answers;
+  qRight = theQuestion.correctanswerindex;
+  $("#gameQuestion").text(qText);
+  // This section add the answer div/buttons
+
+  for (var z = 0; z < qAns.length; z++) {
+    var answerbutton = document.createElement("div");
+    console.log(z);
+    var anstext = qAns[z];
+    console.log(anstext);
+    answerbutton.textContent = anstext;
+    if (z === qRight) {
+      answerbutton.id = "rightAnswer";
+    } else {
+      answerbutton.classList.add("wronganswer");
+    }
+    answerbutton.classList.add("answerbtn");
+
+    // // answerbutton.attr("data-answerslot", i);
+    guessDiv.appendChild(answerbutton);
+    // console.log(answerbutton.text);
+  }
+  $("#rightAnswer").on("click", correctAnswer);
+  $(".wronganswer").on("click", incorrectAnswer);
+}
+
+function getTrivia() {}
+function correctAnswer() {
+  // console.log("Correct Answer");
+  gameScore++;
+  showresults("correct");
+  stopClock();
+  if (qAsked == triviaQuestions.length) {
+    setTimeout(endGame, 3000);
+  } else {
+    setTimeout(newQuestion, 3000);
+  }
+}
+
+function incorrectAnswer() {
+  // console.log("Inorrect Answer");
+
+  stopClock();
+  showresults("incorrect");
+  if (qAsked == triviaQuestions.length) {
+    setTimeout(endGame, 3000);
+  } else {
+    setTimeout(newQuestion, 3000);
+  }
+}
+function timesUp() {
+  // console.log("Times Up!");
+  stopClock();
+  showresults("notime");
+  if (qAsked == triviaQuestions.length) {
+    setTimeout(endGame, 3000);
+  } else {
+    setTimeout(newQuestion, 3000);
+  }
+}
+
+function showresults(winloss) {
+  scoreText = gameScore + " of " + triviaQuestions.length;
+  if (winloss === "correct"){
+    $("#scoreDiv").text(scoreText);
+
+  }
+}
+
+function endGame() {
+  console.log("that's all folks!");
+  stopClock();
+
+}
+
+function updateProgress() {}
 
 // App logic
 //jQuery to load when page loads
 window.onload = function() {
-    $("#lap").on("click", recordLap);
-    $("#stop").on("click", stop);
-    $("#reset").on("click", reset);
-    $("#start").on("click", start);
-  };
-
-  
+  $("#startButton").on("click", startGame);
+  // $("#stop").on("click", stop);
+  // $("#reset").on("click", reset);
+  // $("#start").on("click", start);
+};

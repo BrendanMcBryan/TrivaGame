@@ -39,19 +39,59 @@ body {
   font-size: 2rem;
   text-align: center;
 }
-#timerDiv,
+#timersection,
 #resultImg,
 #resultDiv,
 #gameCard {
   display: none;
 }
+#timerDiv, #scoreDiv{
+  margin:0 auto;
+  text-align: center;
+  font-size: 4rem;
+  color: maroon;
+}
+#scoreDiv{
+  color: green;
+}
 
 #bot {
-  font-size: .5rem;
+  font-size: 0.5rem;
   width: 576px;
   background-color: rebeccapurple;
   text-align: center;
   position: fixed;
 
   bottom: 0;
+}
+#gameCard{
+  text-align: center;
+  align: center;
+}
+#startButton {
+  padding: 6px;
+  margin: 0 auto;
+  text-align: center;
+  width: 33%;
+  color: ivory;
+  background-color: burlywood;
+  border: 1px dotted saddlebrown;
+  border-radius: 3px 9px;
+  box-shadow: 0 3px 6px 0 rgba(26, 27, 27, 0.3),
+    0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+#gameQuestion {
+  margin: 0 auto;
+  font-size: 1.5rem;
+  text-align: center;
+  color: black;
+  
+}
+.answerbtn{
+  width: 100%;
+  text-align: center;
+  color: saddlebrown;
+  font-size: 1.25rem;
+
 }
