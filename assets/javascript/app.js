@@ -53,6 +53,7 @@ triviaQuestions = [
   }
 ];
 
+// test to make sure i can access all info from array of objects Above.
 for (var i = 0; i < triviaQuestions.length; i++) {
   console.log(triviaQuestions[i].questiontype);
   console.log(triviaQuestions[i].question);
@@ -65,3 +66,28 @@ for (var i = 0; i < triviaQuestions.length; i++) {
 
   console.log(triviaQuestions[i].qimageurl);
 }
+//Functions to run App
+function startGame() {}
+
+function newQuestion() {}
+
+function correctAnswer() {}
+
+function incorrectAnswer() {}
+
+function timesUp (){}
+
+function endGame(){}
+
+function updateProgress (){}
+
+// App logic
+//jQuery to load when page loads
+window.onload = function() {
+    $("#lap").on("click", recordLap);
+    $("#stop").on("click", stop);
+    $("#reset").on("click", reset);
+    $("#start").on("click", start);
+  };
+
+  

@@ -32,5 +32,26 @@ body {
 }
 .contentdiv {
   padding: 16px;
-  font-size: 16px;
+  font-size: 1rem;
+}
+
+#top {
+  font-size: 2rem;
+  text-align: center;
+}
+#timerDiv,
+#resultImg,
+#resultDiv,
+#gameCard {
+  display: none;
+}
+
+#bot {
+  font-size: .5rem;
+  width: 576px;
+  background-color: rebeccapurple;
+  text-align: center;
+  position: fixed;
+
+  bottom: 0;
 }
