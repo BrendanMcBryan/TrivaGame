@@ -82,7 +82,6 @@ function startClock() {
     intervalId = setInterval(count, 1000);
     clockRunning = true;
   }
-
 }
 function stopClock() {
   clearInterval(intervalId);
@@ -120,7 +119,7 @@ function timeConverter(t) {
 }
 
 function startGame() {
-  console.log("you got to Start Game");
+  // console.log("you got to Start Game");
   $("#gameCard").css("display", "block");
   $("#timerSection").css("display", "block");
   $("#metabuttons").css("display", "none");
@@ -133,7 +132,6 @@ function newQuestion() {
   qAsked++;
   qNum++;
   theQuestion = triviaQuestions[qNum];
-
   var guessDiv = document.getElementById("gameGuessChoices");
   guessDiv.innerHTML = "";
   qText = theQuestion.question;
@@ -144,9 +142,9 @@ function newQuestion() {
 
   for (var z = 0; z < qAns.length; z++) {
     var answerbutton = document.createElement("div");
-    console.log(z);
     var anstext = qAns[z];
-    console.log(anstext);
+
+    // console.log(anstext);
     answerbutton.textContent = anstext;
     if (z === qRight) {
       answerbutton.id = "rightAnswer";
@@ -159,16 +157,18 @@ function newQuestion() {
     guessDiv.appendChild(answerbutton);
     // console.log(answerbutton.text);
   }
+
   $("#rightAnswer").on("click", correctAnswer);
   $(".wronganswer").on("click", incorrectAnswer);
 }
 
 function getTrivia() {}
+
 function correctAnswer() {
   // console.log("Correct Answer");
+  stopClock();
   gameScore++;
   showresults("correct");
-  stopClock();
   if (qAsked == triviaQuestions.length) {
     setTimeout(endGame, 3000);
   } else {
@@ -181,7 +181,7 @@ function incorrectAnswer() {
 
   stopClock();
   showresults("incorrect");
-  if (qAsked == triviaQuestions.length) {
+  if (qAsked === triviaQuestions.length) {
     setTimeout(endGame, 3000);
   } else {
     setTimeout(newQuestion, 3000);
@@ -199,17 +199,37 @@ function timesUp() {
 }
 
 function showresults(winloss) {
-  scoreText = gameScore + " of " + triviaQuestions.length;
-  if (winloss === "correct"){
-    $("#scoreDiv").text(scoreText);
+  scoreText =
+    "You've guessed " +
+    gameScore +
+    " of " +
+    triviaQuestions.length +
+    " questions correct";
+  var imageDiv = document.getElementById("resultImg");
+  var imgURL = theQuestion.qimageurl;
 
+  var imgURLtext = "'<img src='" + imgURL + "' >'";
+  if (winloss === "correct") {
+    $("#scoreDiv").text(scoreText);
+    $("#resultDiv").text(theQuestion.correctText);
+
+    imageDiv.innerHTML(imgURLtext);
+    $("#resultImg").css("display", "block");
+
+    // console.log(theQuestion.correctText);
+    $("#resultDiv").css("display", "block");
+  } else if (winloss === "incorrect") {
+    $("#scoreDiv").text(scoreText);
+  } else if (winloss === "notime") {
+    $("#scoreDiv").text(scoreText);
   }
 }
 
 function endGame() {
   console.log("that's all folks!");
   stopClock();
-
+  $("#metabuttons").css("display", "block");
+  $("#gameCard").css("display", "none");
 }
 
 function updateProgress() {}

@@ -46,13 +46,17 @@ body {
   display: none;
 }
 #timerDiv, #scoreDiv{
-  margin:0 auto;
+  background-color: navajowhite;
+  /* border: 1px dotted saddlebrown; */
+  border-radius: 3px 9px;
+  /* margin:0 auto; */
   text-align: center;
-  font-size: 4rem;
+  font-size: 1rem;
   color: maroon;
 }
 #scoreDiv{
   color: green;
+  font-size: .75rem;
 }
 
 #bot {

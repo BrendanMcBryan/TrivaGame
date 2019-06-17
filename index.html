@@ -19,13 +19,12 @@
     <!-- link custom css -->
     <link rel="stylesheet" href="./assets/css/style.css" />
     <!-- link to google font -->
-    
   </head>
   <body>
     <div class="maincontent container">
       <section id="top" class="contentdiv">
         Geography Quiz!
-        <hr>
+        <hr />
       </section>
 
       <section id="metabuttons" class="contentdiv">
@@ -34,9 +33,12 @@
         </div>
       </section>
 
-      <section id="timerSection" class="contentdiv">
-        <div id="timerDiv"></div>
-        <div id="scoreDiv"></div>
+      <section id="timerSection" class="container contentdiv">
+        <div class="row justify-content-between d-flex">
+          <div id="timerDiv" class="col-4"></div>
+          <div id="scoreDiv" class="col-6"></div>
+        
+        </div>
       </section>
 
       <section id="resultDiv" class="contentdiv">
@@ -48,10 +50,8 @@
       </section>
 
       <section id="gameCard" class="contentdiv">
-        <div id="gameQuestion" class="row">The question goes here</div>
-        <div id="gameGuessChoices" class="row">
-          
-        </div>
+        <div id="gameQuestion" class="row d-flex justify-content-between">The question goes here</div>
+        <div id="gameGuessChoices" class="row"></div>
       </section>
       <section id="bot" class="contentdiv">
         What is Geography?
