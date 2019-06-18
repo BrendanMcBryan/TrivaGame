@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  z-index: 0;
 }
 
 body {
@@ -27,12 +28,14 @@ body {
     rgba(235, 234, 229, 0.6),
     rgba(235, 229, 210, 0.7)
   );
+  z-index: 1;
 
   /* opacity: .25; */
 }
 .contentdiv {
   padding: 16px;
   font-size: 1rem;
+  align-content: center;
 }
 
 #top {
@@ -44,19 +47,28 @@ body {
 #resultDiv,
 #gameCard {
   display: none;
+  text-align: center;
 }
-#timerDiv, #scoreDiv{
+
+#resultImg{
+  width: 200px;
+  margin: auto;
+  align-content: center;
+  
+}
+#timerDiv,
+#scoreDiv {
   background-color: navajowhite;
   /* border: 1px dotted saddlebrown; */
   border-radius: 3px 9px;
   /* margin:0 auto; */
   text-align: center;
-  font-size: 1rem;
+  font-size: 2rem;
   color: maroon;
 }
-#scoreDiv{
+#scoreDiv {
   color: green;
-  font-size: .75rem;
+  font-size: 0.75rem;
 }
 
 #bot {
@@ -68,7 +80,7 @@ body {
 
   bottom: 0;
 }
-#gameCard{
+#gameCard {
   text-align: center;
   align: center;
 }
@@ -81,8 +93,7 @@ body {
   background-color: burlywood;
   border: 1px dotted saddlebrown;
   border-radius: 3px 9px;
-  box-shadow: 0 3px 6px 0 rgba(26, 27, 27, 0.3),
-    0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 6px 0 rgba(26, 27, 27, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
 #gameQuestion {
@@ -90,12 +101,37 @@ body {
   font-size: 1.5rem;
   text-align: center;
   color: black;
-  
 }
-.answerbtn{
+.answerbtn {
   width: 100%;
   text-align: center;
   color: saddlebrown;
   font-size: 1.25rem;
+}
 
+#correctscreen,
+#incorrectscreen,
+#timesscreen {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0.8;
+  /* margin-top: -150px; */
+  margin-left: -150px;
+  width: 300px;
+  padding: 32px;
+  /* height: 300px; */
+  /* display: none; */
+  background-color: green;
+  color: white;
+  font-size: 32px;
+  text-align: center;
+  z-index: 5;
+}
+#incorrectscreen {
+  background-color: red;
+}
+#timesscreen {
+  background-color: dimgrey;
 }

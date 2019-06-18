@@ -8,7 +8,7 @@ triviaQuestions = [
     correctanswerindex: 2,
     correctText: "Correct! Africa has ≈ 1.2 billion people living on it.",
     qimageurl:
-      "https://commons.wikimedia.org/wiki/File:Africa_(orthographic_projection).svg#/media/File:Africa_(orthographic_projection).svg"
+      "https://upload.wikimedia.org/wikipedia/commons/8/86/Africa_%28orthographic_projection%29.svg"
   },
 
   {
@@ -18,7 +18,7 @@ triviaQuestions = [
     correctanswerindex: 0,
     correctText: "Antartica is 5.4 square miles, compared to Europe's 3.9",
     qimageurl:
-      "https://commons.wikimedia.org/wiki/File:Antarctica_(orthographic_projection).svg#/media/File:Antarctica_(orthographic_projection).svg"
+      "https://upload.wikimedia.org/wikipedia/commons/f/f2/Antarctica_%28orthographic_projection%29.svg"
   },
 
   {
@@ -28,7 +28,7 @@ triviaQuestions = [
     correctanswerindex: 3,
     correctText: "That's right, the Nile is 4,132 miles long!",
     qimageurl:
-      "https://commons.wikimedia.org/wiki/File:Evening,_Nile_River,_Uganda.jpg#/media/File:Evening,_Nile_River,_Uganda.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/a/a1/Evening%2C_Nile_River%2C_Uganda.jpg"
   },
 
   {
@@ -39,7 +39,7 @@ triviaQuestions = [
     correctText:
       "Correct! Despite being very large, Brazil is smaller than those other three",
     qimageurl:
-      "https://commons.wikimedia.org/wiki/File:BRA_orthographic.svg#/media/File:BRA_orthographic.svg"
+      "https://upload.wikimedia.org/wikipedia/commons/b/be/Mapa_do_Brasil_com_a_Bandeira_Nacional.png"
   },
 
   {
@@ -49,7 +49,7 @@ triviaQuestions = [
     correctanswerindex: 1,
     correctText: "Yup, the Earth's surface is only about 71% covered by water.",
     qimageurl:
-      "https://commons.wikimedia.org/wiki/File:Clouds_over_the_Atlantic_Ocean.jpg#/media/File:Clouds_over_the_Atlantic_Ocean.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/2/22/Earth_Western_Hemisphere_transparent_background.png"
   }
 ];
 var clockRunning = false;
@@ -128,6 +128,7 @@ function startGame() {
 }
 
 function newQuestion() {
+  hideresults();
   startClock();
   qAsked++;
   qNum++;
@@ -197,30 +198,37 @@ function timesUp() {
     setTimeout(newQuestion, 3000);
   }
 }
+function hideresults() {
+  $("#resultImg").css("display", "none");
+  $("#resultDiv").css("display", "none");
+  $("#correctscreen").css("display", "None")
+  $("#incorrectscreen").css("display", "None")
+  $("#timesscreen").css("display", "None")
+}
 
 function showresults(winloss) {
+  totalQ = qNum + 1;
   scoreText =
-    "You've guessed " +
-    gameScore +
-    " of " +
-    triviaQuestions.length +
-    " questions correct";
-  var imageDiv = document.getElementById("resultImg");
+    "You've guessed " + gameScore + " of " + totalQ + " questions correct";
+  var imageDiv = $("#resultImg");
   var imgURL = theQuestion.qimageurl;
+  imageDiv.attr("src", imgURL);
 
-  var imgURLtext = "'<img src='" + imgURL + "' >'";
+
   if (winloss === "correct") {
     $("#scoreDiv").text(scoreText);
     $("#resultDiv").text(theQuestion.correctText);
 
-    imageDiv.innerHTML(imgURLtext);
     $("#resultImg").css("display", "block");
+    $("#correctscreen").css("display", "block");
 
     // console.log(theQuestion.correctText);
     $("#resultDiv").css("display", "block");
   } else if (winloss === "incorrect") {
     $("#scoreDiv").text(scoreText);
+    $("#incorrectscreen").css("display", "block");
   } else if (winloss === "notime") {
+    $("#timesscreen").css("display", "block");
     $("#scoreDiv").text(scoreText);
   }
 }
@@ -230,6 +238,10 @@ function endGame() {
   stopClock();
   $("#metabuttons").css("display", "block");
   $("#gameCard").css("display", "none");
+  hideresults();
+  $("#gameCard").css("display", "none");
+  $("#timerSection").css("display", "none");
+
 }
 
 function updateProgress() {}

@@ -21,6 +21,18 @@
     <!-- link to google font -->
   </head>
   <body>
+    <!-- these screens provide feedback to the user -->
+    <div id="correctscreen">
+      <section id="resultDiv" class="contentdiv">
+        Result section
+      </section>
+
+      <img id="resultImg" />
+    </div>
+
+    <div id="incorrectscreen">Incorrect!</div>
+    <div id="timesscreen">Times UP!</div>
+
     <div class="maincontent container">
       <section id="top" class="contentdiv">
         Geography Quiz!
@@ -37,20 +49,13 @@
         <div class="row justify-content-between d-flex">
           <div id="timerDiv" class="col-4"></div>
           <div id="scoreDiv" class="col-6"></div>
-        
         </div>
       </section>
 
-      <section id="resultDiv" class="contentdiv">
-        Result section
-      </section>
-
-      <section id="resultImg" class="contentdiv">
-        result image section
-      </section>
-
       <section id="gameCard" class="contentdiv">
-        <div id="gameQuestion" class="row d-flex justify-content-between">The question goes here</div>
+        <div id="gameQuestion" class="row d-flex justify-content-between">
+          The question goes here
+        </div>
         <div id="gameGuessChoices" class="row"></div>
       </section>
       <section id="bot" class="contentdiv">
