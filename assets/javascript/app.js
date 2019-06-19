@@ -58,7 +58,7 @@ var time = 0;
 var qAsked = 0;
 var qNum = -1;
 var gameScore = 0;
-var timeperq = 5;
+var timeperq = 30;
 
 // test to make sure i can access all info from array of objects Above.
 
@@ -85,7 +85,7 @@ function startClock() {
 }
 function stopClock() {
   clearInterval(intervalId);
-  timeperq = 5;
+  timeperq = 31; //giving it 30+1 as cheat to get 30 to be first number seen.
   time = 0;
   clockRunning = false;
 }
@@ -120,8 +120,8 @@ function timeConverter(t) {
 
 function startGame() {
   // console.log("you got to Start Game");
-  $("#gameCard").css("display", "block");
   $("#timerSection").css("display", "block");
+  $("#gameCard").css("display", "block");
   $("#metabuttons").css("display", "none");
 
   newQuestion();
@@ -201,19 +201,18 @@ function timesUp() {
 function hideresults() {
   $("#resultImg").css("display", "none");
   $("#resultDiv").css("display", "none");
-  $("#correctscreen").css("display", "None")
-  $("#incorrectscreen").css("display", "None")
-  $("#timesscreen").css("display", "None")
+  $("#correctscreen").css("display", "None");
+  $("#incorrectscreen").css("display", "None");
+  $("#timesscreen").css("display", "None");
 }
 
 function showresults(winloss) {
   totalQ = qNum + 1;
   scoreText =
-    "You've guessed " + gameScore + " of " + totalQ + " questions correct";
+      gameScore + " of " + totalQ + " correct";
   var imageDiv = $("#resultImg");
   var imgURL = theQuestion.qimageurl;
   imageDiv.attr("src", imgURL);
-
 
   if (winloss === "correct") {
     $("#scoreDiv").text(scoreText);
@@ -238,10 +237,11 @@ function endGame() {
   stopClock();
   $("#metabuttons").css("display", "block");
   $("#gameCard").css("display", "none");
+
+
   hideresults();
   $("#gameCard").css("display", "none");
   $("#timerSection").css("display", "none");
-
 }
 
 function updateProgress() {}

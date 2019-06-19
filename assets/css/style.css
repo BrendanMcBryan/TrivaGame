@@ -51,16 +51,24 @@ body {
 }
 
 #resultImg{
-  width: 200px;
+  width: 30%;
   margin: auto;
   align-content: center;
   
 }
 #timerDiv,
 #scoreDiv {
-  background-color: navajowhite;
+  /* background-color: navajowhite; */
   /* border: 1px dotted saddlebrown; */
   border-radius: 3px 9px;
+  box-shadow: 0 3px 6px 0 rgba(26, 27, 27, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(
+    to right,
+    rgba(188, 179, 148, 0.8),
+    rgba(208, 200, 160, 0.9),
+    rgba(232, 220, 181, 0.8)
+  );
+  
   /* margin:0 auto; */
   text-align: center;
   font-size: 2rem;
@@ -68,13 +76,18 @@ body {
 }
 #scoreDiv {
   color: green;
-  font-size: 0.75rem;
+  /* font-size: 0.75rem; */
 }
 
 #bot {
   font-size: 0.5rem;
   width: 576px;
-  background-color: rebeccapurple;
+  background-image: linear-gradient(
+    to right,
+    rgba(235, 229, 210, 0.0),
+    rgba(235, 234, 229, 0.9),
+    rgba(235, 229, 210, 0.0)
+  );
   text-align: center;
   position: fixed;
 
@@ -85,15 +98,23 @@ body {
   align: center;
 }
 #startButton {
+  cursor: pointer;
   padding: 6px;
   margin: 0 auto;
   text-align: center;
+  color: peru;
   width: 33%;
-  color: ivory;
-  background-color: burlywood;
-  border: 1px dotted saddlebrown;
+  /* color: ivory; */
+  /* background-color: burlywood; */
+  /* border: 1px dotted saddlebrown; */
   border-radius: 3px 9px;
   box-shadow: 0 3px 6px 0 rgba(26, 27, 27, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(
+    to right,
+    rgba(188, 179, 148, 0.8),
+    rgba(208, 200, 160, 0.9),
+    rgba(232, 220, 181, 0.8)
+  );
 }
 
 #gameQuestion {
@@ -104,28 +125,38 @@ body {
 }
 .answerbtn {
   width: 100%;
+  padding: 9px;
+  margin: 3px auto;
   text-align: center;
   color: saddlebrown;
   font-size: 1.25rem;
+  cursor: pointer;
+  background-image: linear-gradient(
+    to right,
+    rgba(235, 229, 210, 0.1),
+    rgba(227, 219, 179, 0.712),
+    rgba(235, 229, 210, 0.1)
+  );
 }
 
 #correctscreen,
 #incorrectscreen,
 #timesscreen {
   display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  opacity: 0.8;
+  /* position: absolute; */
+  /* top: 33%;
+  left: 50%; */
+  opacity: 0.9;
   /* margin-top: -150px; */
-  margin-left: -150px;
-  width: 300px;
+  /* margin-left: -150px; */
+  width: 100%;
   padding: 32px;
-  /* height: 300px; */
+  padding-top: 96px;
+  height: 100%;
   /* display: none; */
   background-color: green;
   color: white;
-  font-size: 32px;
+  font-size: 6rem;
   text-align: center;
   z-index: 5;
 }
