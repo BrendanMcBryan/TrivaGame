@@ -173,7 +173,7 @@ function correctAnswer() {
   if (qAsked == triviaQuestions.length) {
     setTimeout(endGame, 1500);
   } else {
-    setTimeout(newQuestion, 1500);
+    setTimeout(newQuestion, 3000);
   }
 }
 
