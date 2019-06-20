@@ -1,6 +1,7 @@
 html {
   height: 100%;
   z-index: 0;
+  text-align: center;
 }
 
 body {
@@ -102,7 +103,9 @@ body {
   padding: 6px;
   margin: 0 auto;
   text-align: center;
-  color: peru;
+  font-weight: bold;
+  color: midnightblue;
+  font-size: 1.4rem;
   width: 33%;
   /* color: ivory; */
   /* background-color: burlywood; */
@@ -141,7 +144,7 @@ body {
 
 #correctscreen,
 #incorrectscreen,
-#timesscreen {
+#timesscreen, #finalscreen {
   display: none;
   /* position: absolute; */
   /* top: 33%;
@@ -165,4 +168,13 @@ body {
 }
 #timesscreen {
   background-color: dimgrey;
+}
+#finalscreen{
+  /* display: block; */
+  background-image: linear-gradient(
+    to right,
+    rgba(119, 162, 227, 0.8),
+    rgba(79, 127, 198, 0.9),
+    rgba(158, 205, 200, 0.923)
+  );
 }

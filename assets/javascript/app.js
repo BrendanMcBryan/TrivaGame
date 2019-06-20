@@ -77,7 +77,7 @@ var timeperq = 30;
 
 //Functions to run App
 function startClock() {
-  console.log("you got to Start Clock");
+  // console.log("you got to Start Clock");
   if (!clockRunning) {
     intervalId = setInterval(count, 1000);
     clockRunning = true;
@@ -119,11 +119,11 @@ function timeConverter(t) {
 }
 
 function startGame() {
-  // console.log("you got to Start Game");
   $("#timerSection").css("display", "block");
+  // console.log("you got to Start Game");
   $("#gameCard").css("display", "block");
   $("#metabuttons").css("display", "none");
-
+  // setTimeout(newQuestion, 500);
   newQuestion();
 }
 
@@ -171,9 +171,9 @@ function correctAnswer() {
   gameScore++;
   showresults("correct");
   if (qAsked == triviaQuestions.length) {
-    setTimeout(endGame, 3000);
+    setTimeout(endGame, 1500);
   } else {
-    setTimeout(newQuestion, 3000);
+    setTimeout(newQuestion, 1500);
   }
 }
 
@@ -183,9 +183,9 @@ function incorrectAnswer() {
   stopClock();
   showresults("incorrect");
   if (qAsked === triviaQuestions.length) {
-    setTimeout(endGame, 3000);
+    setTimeout(endGame, 1500);
   } else {
-    setTimeout(newQuestion, 3000);
+    setTimeout(newQuestion, 500);
   }
 }
 function timesUp() {
@@ -193,9 +193,9 @@ function timesUp() {
   stopClock();
   showresults("notime");
   if (qAsked == triviaQuestions.length) {
-    setTimeout(endGame, 3000);
+    setTimeout(endGame, 1000);
   } else {
-    setTimeout(newQuestion, 3000);
+    setTimeout(newQuestion, 1500);
   }
 }
 function hideresults() {
@@ -204,12 +204,12 @@ function hideresults() {
   $("#correctscreen").css("display", "None");
   $("#incorrectscreen").css("display", "None");
   $("#timesscreen").css("display", "None");
+  $("#finalscreen").css("display", "none");
 }
 
 function showresults(winloss) {
   totalQ = qNum + 1;
-  scoreText =
-      gameScore + " of " + totalQ + " correct";
+  scoreText = gameScore + " of " + totalQ + " correct";
   var imageDiv = $("#resultImg");
   var imgURL = theQuestion.qimageurl;
   imageDiv.attr("src", imgURL);
@@ -233,24 +233,38 @@ function showresults(winloss) {
 }
 
 function endGame() {
-  console.log("that's all folks!");
+  // console.log("that's all folks!");
   stopClock();
-  $("#metabuttons").css("display", "block");
   $("#gameCard").css("display", "none");
-
 
   hideresults();
   $("#gameCard").css("display", "none");
   $("#timerSection").css("display", "none");
+  $("#finalscreen").css("display", "block");
+  var finalmessagetext =
+    "Final Score:" +
+    gameScore +
+    " / " +
+    totalQ +
+    " • " +
+    Math.floor((gameScore / totalQ) * 100) +
+    "%";
+  $("#finalmessage").text(finalmessagetext);
+  setTimeout(startallover, 3000);
+  $("#metabuttons").css("display", "block");
 }
-
-function updateProgress() {}
+function startallover() {
+  hideresults();
+  clockRunning = false;
+  time = 0;
+  qAsked = 0;
+  qNum = -1;
+  gameScore = 0;
+  timeperq = 30;
+}
 
 // App logic
 //jQuery to load when page loads
 window.onload = function() {
   $("#startButton").on("click", startGame);
-  // $("#stop").on("click", stop);
-  // $("#reset").on("click", reset);
-  // $("#start").on("click", start);
 };
